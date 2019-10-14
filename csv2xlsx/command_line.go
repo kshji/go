@@ -20,7 +20,8 @@ func initCommandLine(args []string) error {
 	app.Usage = "Convert CSV data to XLSX - especially the big one. \n\n" +
 		"Example: \n" +
 		"   csv2xlsx --template example/template.xlsx --sheet Sheet_1 --sheet Sheet_2 --row 2 --output result.xlsx data.csv data2.csv \n" +
-		"   csv2xlsx.exe -t example\\template.xlsx -s Sheet_1 -s Sheet_2 -r 2 -o result.xlsx data.csv data2.csv "
+		"   csv2xlsx.exe -t example\\template.xlsx -s Sheet_1 -s Sheet_2 -r 2 -o result.xlsx data.csv data2.csv \n"  +
+		"   csv2xlsx -d 0 -c ';' -t example/template5.xlsx --headerlines 1 --writeheaderlines 0 -r 5 -s Sh2 -o data3.xlsx  example/data3.csv"
 
 	app.Version = "0.2.2"
 	app.ArgsUsage = "[file of file's list with csv data]"
