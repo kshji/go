@@ -46,11 +46,12 @@ Look examples formula col.
 --template path, -t path          path to xlsx file with template output
 --row number, -r number           template row number to use for create rows format. When '0' - not used. This row will be removed from xlsx file. (default: 0)
 --output xlsx file, -o xlsx file  path to result xlsx file (default: "./output.xlsx")
+--colsep char, c char             column separator (default ';')
 --headerlines number              how many headerlines in CSV, default 1
 --writeheaderlines 0|1            write headerlines to the Excel, default 1, yes. If templates include headers, then set this 0.
 --startrow number                 Default is start csv reading from line 1. If not like import headerline, then set this ex. 2
 --help, -h                        show help
---debug 0|1, -h                   debug level 0 | 1, default 0.
+--debug 0|1, -d 0|1               debug level 0 | 1, default 0.
 --verbose 0|1                     default 0. Show rownumber when processing csv files.
 --version, -v                     print the version
 ```
