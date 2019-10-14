@@ -31,6 +31,9 @@ csv2xlsx.exe -t example/template.xlsx -s Sheet_1 -s Sheet_2 -r 2 -o result.xlsx 
 csv2xlsx -d 0 -c ';' -t example/template5.xlsx --headerlines 1 --writeheaderlines 0 -r 5 -s Sh2 -o data3.xlsx  example/data3.csv
 ```
 
+You can use also formulas in template or in csv. Csv formulas overwrite template formulas.
+Look examples formula col.
+
 ### USAGE:
 
     csv2xlsx [global options] command [command options] [file of file's list with csv data]
@@ -57,6 +60,7 @@ csv2xlsx -d 0 -c ';' -t example/template5.xlsx --headerlines 1 --writeheaderline
 ## LICENSE
 
 	mentax has done excellent packet. I have only add some extensions. Enjoy.
+
 	[License] (https://github.com/mentax/csv2xlsx/blob/master/LICENSE)
 
 ## Download
@@ -65,5 +69,5 @@ Original version:
 Download from [releases section on GitHub](https://github.com/mentax/csv2xlsx/releases)
 
 My updated version
-Download from [releases section on GitHub](https://github.com/kshji/go/csv2xlsx/build)
+Download from [releases section on GitHub](https://github.com/kshji/go/tree/master/csv2xlsx/build)
 
