@@ -15,11 +15,11 @@ In real life I need lot of convert CSV output to the Excel and
 read input data from Excel. CSV/Json/XML formats are my working formats, because ex. Postgresql like to use COPY command to import/export.
 Also awk-command,ksh,... like to use CSV files.
 
-  * [xlsx2csv] (https://github.com/tealeg/xlsx2csv) , I have only added Sheetname support to export CSV. Very simple and fast Excel to Csv converter.
-  * [xlsx] (https://github.com/tealeg/xlsx), nice XLSX library to read and write Excel files.
-  * [xlsx doc] (https://godoc.org/github.com/tealeg/xlsx), xlsx documentation
-  * [csv2xlsx] (https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks. 
-  * [csv2xlsx] (https://github.com/mentax/csv2xlsxts)  I have took this source and updated it. 
+  * [xlsx2csv](https://github.com/tealeg/xlsx2csv) , I have only added Sheetname support to export CSV. Very simple and fast Excel to Csv converter. [updated](https://github.com/tealeg/xlsx2csv/issues/9)
+  * [xlsx](https://github.com/tealeg/xlsx), nice XLSX library to read and write Excel files.
+  * [xlsx doc](https://godoc.org/github.com/tealeg/xlsx), xlsx documentation
+  * [csv2xlsx](https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks. 
+  * [csv2xlsx](https://github.com/mentax/csv2xlsxts)  I have took this source and updated it. 
 
 
 ## My Repo ##
