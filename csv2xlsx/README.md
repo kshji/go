@@ -1,13 +1,13 @@
 
 
-[![Build Status](https://travis-ci.org/mentax/csv2xlsx.svg?branch=master)](https://travis-ci.org/mentax/csv2xlsx)
-[![GoDoc](https://godoc.org/github.com/mentax/csv2xlsx?status.svg)](https://godoc.org/github.com/mentax/csv2xlsx)
-[![codebeat badge](https://codebeat.co/badges/1b57272c-e0fa-4a14-93b5-3586e192fdb3)](https://codebeat.co/projects/github-com-mentax-csv2xlsx-master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mentax/csv2xlsx)](https://goreportcard.com/report/github.com/mentax/csv2xlsx)
-[![Coverage](https://gocover.io/_badge/github.com/mentax/csv2xlsx)](http://gocover.io/github.com/mentax/csv2xlsx)
 
 # csv 2 xlsx
 
+
+## ORIGINAL VERSIONS
+
+	* [csv2xlsx](https://github.com/mentax/csv2xlsx) I have took this source and updated it.
+	* [csv2xlsx](https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks.
 
 ## HELP
   Actual version always on  csv2xlsx -h or csv2xlsx help
