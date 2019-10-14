@@ -34,12 +34,12 @@ Look examples formula col.
 
 ### USAGE:
 
-    csv2xlsx [global options] command [command options] [file of file's list with csv data]
+    csv2xlsx [options] csvfile(s) 
 
 #### VERSION:
    0.2.2
 
-#### GLOBAL OPTIONS:
+#### OPTIONS:
 
 ```
 --sheets names, -s names          sheet names in the same order like csv files. If sheet with that name exists, data is inserted to this sheet. Usage: -s AA -s BB
