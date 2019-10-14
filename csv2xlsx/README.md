@@ -1,13 +1,11 @@
 
-
-
 # csv 2 xlsx
 
 
 ## ORIGINAL VERSIONS
 
-	* [csv2xlsx](https://github.com/mentax/csv2xlsx) I have took this source and updated it.
-	* [csv2xlsx](https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks.
+  * [mentax csv2xlsx](https://github.com/mentax/csv2xlsx) I have took this source and updated it.
+  * [DerLinkshaender csv2xlsx](https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks.
 
 ## HELP
   Actual version always on  csv2xlsx -h or csv2xlsx help
@@ -59,9 +57,9 @@ Look examples formula col.
 
 ## LICENSE
 
-	mentax has done excellent packet. I have only add some extensions. Enjoy.
+    mentax has done excellent packet. I have only add some extensions. Enjoy.
 
-	[License] (https://github.com/mentax/csv2xlsx/blob/master/LICENSE)
+    [License](https://github.com/mentax/csv2xlsx/blob/master/LICENSE)
 
 ## Download
 
