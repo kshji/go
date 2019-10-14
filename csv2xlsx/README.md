@@ -59,7 +59,7 @@ Look examples formula col.
 
 [mentax](https://github.com/mentax/) has done excellent packet. I have only add some extensions. Enjoy.
 
-    [License](https://github.com/mentax/csv2xlsx/blob/master/LICENSE)
+[License](https://github.com/mentax/csv2xlsx/blob/master/LICENSE)
 
 ## Download
 
