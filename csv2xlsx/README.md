@@ -26,8 +26,9 @@
 ### Example:
 
 ```bash
-csv2xlsx --template example/template.xlsx --sheet Sheet_1 --sheet Sheet_2 --row 2 --output result.xlsx data.csv data2.csv
-csv2xlsx.exe -t example/template.xlsx -s Sheet_1 -s Sheet_2 -r 2 -o result.xlsx data.csv data2.csv
+csv2xlsx --template example/template.xlsx --sheet Sheet_1 --sheet Sheet_2 --row 2 --output result.xlsx example/data.csv example/data2.csv
+csv2xlsx.exe -t example/template.xlsx -s Sheet_1 -s Sheet_2 -r 2 -o result.xlsx example/data.csv example/data2.csv
+csv2xlsx -d 0 -c ';' -t example/template5.xlsx --headerlines 1 --writeheaderlines 0 -r 5 -s Sh2 -o data3.xlsx  example/data3.csv
 ```
 
 ### USAGE:
@@ -63,5 +64,5 @@ Original version:
 Download from [releases section on GitHub](https://github.com/mentax/csv2xlsx/releases)
 
 My updated version
-Download from [releases section on GitHub](https://github.com/kshji/go/csv2xlsx)
+Download from [releases section on GitHub](https://github.com/kshji/go/csv2xlsx/build)
 
