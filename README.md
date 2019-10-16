@@ -19,7 +19,7 @@ Also awk-command,ksh,... like to use CSV files.
   * [xlsx](https://github.com/tealeg/xlsx), nice XLSX library to read and write Excel files.
   * [xlsx doc](https://godoc.org/github.com/tealeg/xlsx), xlsx documentation
   * [csv2xlsx](https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks. 
-  * [csv2xlsx](https://github.com/mentax/csv2xlsxts)  I have took this source and updated it. 
+  * [csv2xlsx](https://github.com/mentax/csv2xlsx)  I have took this source and updated it. 
 
 
 ## My Repo ##
