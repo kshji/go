@@ -5,8 +5,8 @@ Here is some my docs using go.
 
 ## Using  commandline options and arguments as \*nix persons calls or flags as Go calls ##
 
-Basic using
-This version function call need update always when you add new flag.
+Basic using,
+this version function call need update always when you add new flag.
 ```go
 package main
 
@@ -111,3 +111,62 @@ func testflags(Par MyConfig) {
 ```
 
 
+### Using structured set of flags ###
+Include also usage example and command line include options and argument(s).
+
+```go
+package main
+
+// go run main.flag.ver3.go -d ";" -s sheet -f xxxx -i 1
+// go run main.flag.ver3.go -d ";" -s sheet -f xxxx -i 1 somefile                                                                                                                 
+import (
+    "flag"
+    "fmt"
+    "os"
+)
+
+type MyConfig struct {
+        xlsxPath string
+        sheetIndex int
+        sheetName string
+        delimiter string
+}
+
+func main() {
+        myParam := new(MyConfig)
+        // - options
+        flag.StringVar(&myParam.xlsxPath,"f", "", "Path to an XLSX file")
+        flag.IntVar(&myParam.sheetIndex,"i", 0, "Index of sheet to convert, zero based, default 0")
+        flag.StringVar(&myParam.sheetName,"s", "", "Name of sheet to convert")
+        flag.StringVar(&myParam.delimiter,"d", ";", "Delimiter to use between fields")
+
+        // setup usage
+        flag.Usage = func() {
+                fmt.Fprintf(os.Stderr, `
+%s do something ...
+Usage: %s [flags] somefile
+
+`, os.Args[0], os.Args[0])
+                flag.PrintDefaults()
+        }
+
+        flag.Parse()
+
+        if flag.NArg() != 1 {  // somefile is not set
+                flag.Usage()
+                os.Exit(1)
+        }
+
+        fmt.Println("arguments:", flag.Args())
+
+        testflags(*myParam)  // using struct
+}
+
+func testflags(Par MyConfig) {
+    fmt.Println(Par)
+    fmt.Println("xlsxPath",Par.xlsxPath)
+    fmt.Println("sheetIndex",Par.sheetIndex)
+    fmt.Println("sheetName",Par.sheetName)
+    fmt.Println("delimiter",Par.delimiter)
+}
+```
