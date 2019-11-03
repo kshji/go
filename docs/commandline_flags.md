@@ -156,12 +156,14 @@ Usage: %s [flags] somefile
 
         flag.Parse()
 
-        if flag.NArg() != 1 {  // somefile is not set
+	// test is there argument(s), in this example need something ...
+        if flag.NArg() < 1 {  // somefile is not set
                 flag.Usage()
                 os.Exit(1)
         }
 
         fmt.Println("arguments:", flag.Args())
+        fmt.Println("arg 1:", flag.Arg(0))
 
         testflags(*myParam)  // using struct
 }
