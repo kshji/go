@@ -3,6 +3,7 @@
 Basic using,
 this version function call need update always when you add new flag.
 ```go
+// main.flag.ver0.go
 package main
 
 // go run main.flag.ver0.go -d ";" -f xxxx
@@ -15,7 +16,9 @@ import (
 
 
 func main() {
+	// variables in main
         var (
+		// option -f, default empty string,  and help text
                 xlsxPath = flag.String("f", "", "Path to an XLSX file")
                 delimiter = flag.String("d", ";", "Delimiter to use between fields")
                 )
@@ -34,6 +37,7 @@ func testflags(str1 string, str2 string) {
 ## Using global variables in package ##
 This version function call is stable, but need to use global variables.
 ```go
+// main.flag.ver1.go
 package main
 
 // go run main.flag.ver1.go -d ";" -s sheet -f xxxx -i 1
@@ -44,7 +48,7 @@ import (
 )
 
 
-// global variables in package
+// global variables in package, pointers to the data
 var (
         xlsxPath = flag.String("f", "", "Path to an XLSX file")
         sheetIndex = flag.Int("i", 0, "Index of sheet to convert, zero based")
@@ -58,6 +62,7 @@ func main() {
 }
 
 func testflags() {
+    // using global variables
     fmt.Println("xlsxPath",*xlsxPath)
     fmt.Println("sheetIndex",*sheetIndex)
     fmt.Println("sheetName",*sheetName)
@@ -70,6 +75,7 @@ func testflags() {
 This version function call is always stable, using struct.
 
 ```go
+// main.flag.ver2.go
 package main
 
 // go run main.flag.ver2.go -d ";" -s sheet -f xxxx -i 1
@@ -79,6 +85,7 @@ import (
     "fmt"
 )
 
+// define struct
 type MyConfig struct {
         xlsxPath string
         sheetIndex int
@@ -87,7 +94,8 @@ type MyConfig struct {
 }
 
 func main() {
-        myParam := new(MyConfig)
+        myParam := new(MyConfig)  // create object using struct
+	// flag support also to set flags to the varables, not using pointers = make copy from flags data
         flag.StringVar(&myParam.xlsxPath,"f", "", "Path to an XLSX file")
         flag.IntVar(&myParam.sheetIndex,"i", 0, "Index of sheet to convert, zero based")
         flag.StringVar(&myParam.sheetName,"s", "", "Name of sheet to convert")
@@ -110,6 +118,7 @@ func testflags(Par MyConfig) {
 Include also usage example and command line include options and argument(s).
 
 ```go
+// main.flag.ver3.go
 package main
 
 // go run main.flag.ver3.go -d ";" -s sheet -f xxxx -i 1
