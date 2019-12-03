@@ -48,16 +48,26 @@ Look examples formula col.
 --sheets names, -s names          sheet names in the same order like csv files. If sheet with that name exists, data is inserted to this sheet. Usage: -s AA -s BB
 --template path, -t path          path to xlsx file with template output
 --row number, -r number           template row number to use for create rows format. When '0' - not used. This row will be removed from xlsx file. (default: 0)
+--footer footer_template_path     path to footer xlsx file - footer template 
 --output xlsx file, -o xlsx file  path to result xlsx file (default: "./output.xlsx")
 --colsep char, c char             column separator (default ';')
 --headerlines number              how many headerlines in CSV, default 1
 --writeheaderlines 0|1            write headerlines to the Excel, default 1, yes. If templates include headers, then set this 0.
 --startrow number                 Default is start csv reading from line 1. If not like import headerline, then set this ex. 2
+--config jsonconfigfile           config file, json format: default font, columns defination, used without templates
 --help, -h                        show help
 --debug 0|1, -d 0|1               debug level 0 | 1, default 0.
 --verbose 0|1                     default 0. Show rownumber when processing csv files.
 --version, -v                     print the version
 ```
+
+#### CSV special
+If headerline columnname ending using [d] or [i] or [n], then column typing has used, not default.
+This need little development so that user can tell also default format. Curently format is builtin.
+##### [d] date
+##### [i] integer
+##### [n] float format 0,00
+
 
 ## LICENSE
 
