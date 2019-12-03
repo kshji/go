@@ -11,7 +11,7 @@
   Actual version always on  csv2xlsx -h or csv2xlsx help
 
 ### NAME:
-   csv2xlsx - Convert CSV data to xlsx - especially the big one.
+   csv2xlsx - Convert CSV data to xlsx - especially the big one and/or using Excel templates to format output
 
 ### Speed:
 
