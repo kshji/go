@@ -27,6 +27,9 @@
 csv2xlsx --template example/template.xlsx --sheet Sheet_1 --sheet Sheet_2 --row 2 --output result.xlsx example/data.csv example/data2.csv
 csv2xlsx.exe -t example/template.xlsx -s Sheet_1 -s Sheet_2 -r 2 -o result.xlsx example/data.csv example/data2.csv
 csv2xlsx -d 0 -c ';' -t example/template5.xlsx --headerlines 1 --writeheaderlines 0 -r 5 -s Sh2 -o data3.xlsx  example/data3.csv
+
+echo "data3 remove header + using template and footer template "
+csv2xlsx -d 0 -c ';' -t template5.xlsx --footer template5footer.xlsx --headerlines 1 --writeheaderlines 0 -r 5 -s Sh2 -o data3a.xlsx  data3.csv 
 ```
 
 You can use also formulas in template or in csv. Csv formulas overwrite template formulas.
