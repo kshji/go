@@ -19,4 +19,15 @@ My terminal type is xterm-256
 ```
 
 
+```go
+	// envvars map (hash table) include variable values
+	// regexp rule to find {XXX} strings
+
+	input := 'some text including {TERM} variables to expand like HOME:{HOME}`
+        var r *regexp.Regexp
+        r = regexp.MustCompile(`{([^}]+)}`)
+        result := Expand(input,r,envvars)
+
+```
+
 
