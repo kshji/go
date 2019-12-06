@@ -1,5 +1,6 @@
 
 # csv 2 xlsx
+## csv2xlsx 
 
 
 ## ORIGINAL VERSIONS
@@ -68,12 +69,18 @@ This need little development so that user can tell also default format. Currentl
 ##### [i] integer
 ##### [n] float format 0,00
 
+#### XLSX template and csv data special, expand environment variables if exists in result sheet
+
+	If cell include labeled string like {HOME} or {PATH} or any other environment variable name,
+	those will replace value of variable.
 
 ## LICENSE
 
 [mentax](https://github.com/mentax/) has done excellent packet. I have only add some extensions. Enjoy.
 
 [License](https://github.com/mentax/csv2xlsx/blob/master/LICENSE)
+
+[License](https://github.com/kshji/go/csv2xlsx/blob/master/LICENSE)
 
 ## Download
 

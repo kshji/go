@@ -15,6 +15,7 @@ import (
 	"io"
 	"strconv"
 	"regexp"
+	"strings"
 	"github.com/tealeg/xlsx"
 	"github.com/urfave/cli"
 	"github.com/davecgh/go-spew/spew"
@@ -72,10 +73,28 @@ func writeAllSheets(xlFile *xlsx.File, dataFiles []string, sheetNames []string, 
 
 	if myParam.debug>0 { fmt.Println("Set DefaultFont:",myParam.fontsize,myParam.font) }
 
-
 	var sheetFooter *xlsx.Sheet = nil
 	var xlRow *xlsx.Row
 	var exampleRow *xlsx.Row
+	// parse all env variables using indexed array - map - hash table
+	var envvars = make(map[string]string)
+	var varstr string = ""
+
+	// loop all environment variables and add to the map - hash table - maybe need to expand if template include {XX} 
+	for _, e := range os.Environ() {
+                pair := strings.SplitN(e, "=", 2)
+                if myParam.debug > 0 { fmt.Println(e," - ",pair[0],"=",pair[1]) }
+                varstr = "{"+pair[0]+"}"  // add {  } = string comparing is easier, because template using {}
+                envvars[varstr] = pair[1]
+	}
+
+	regexprule := regexp.MustCompile(`{([^}]+)}`)   // {XXX}
+	if myParam.debug > 0 {
+		fmt.Println("RegExpRule:")
+		spew.Dump(regexprule)
+	}
+
+
 
 	for i, dataFileName := range dataFiles {
 
@@ -92,16 +111,16 @@ func writeAllSheets(xlFile *xlsx.File, dataFiles []string, sheetNames []string, 
                 }
 
 		if exampleRowNumber != 0 && exampleRowNumber <= len(sheet.Rows) {
+
+
 			// example row counting from 1
 			exampleRow = sheet.Rows[exampleRowNumber-1]
 			if myParam.debug>0 { fmt.Println("Template row dbg:",exampleRow) }
-			// kesken
-			//parseExampleSheet(sheet, exampleRowNumber)
 
 			sheet.Rows = append(sheet.Rows[:exampleRowNumber-1], sheet.Rows[exampleRowNumber:]...)
+			//parse template, expand variables if used
+			//parseSheet(sheet, exampleRowNumber-1,regexprule ,envvars)
 		}
-		if exampleRowNumber == 0  { // if need some init ...
-			}
 
 		_, err = writeSheet(dataFileName, sheet, exampleRow)
 		if err != nil {
@@ -117,6 +136,7 @@ func writeAllSheets(xlFile *xlsx.File, dataFiles []string, sheetNames []string, 
 				*xlRow=*xlsxrow
 			}
 		}
+		parseSheet(sheet, (-1) ,regexprule ,envvars)
 
 	}
 
@@ -144,11 +164,13 @@ func getSheet(xlFile *xlsx.File, sheetNames []string, i int) (sheet *xlsx.Sheet,
 }
 
 
-// kesken
-// loop Example Sheet and expand variables if exists
-func parseExampleSheet(sheet *xlsx.Sheet, exampleRow int) {
+// loop Sheet and expand variables if exists, if maxRow < 0 = all rows
+func parseSheet(sheet *xlsx.Sheet, maxRow int,re *regexp.Regexp, variables  map[string]string ) {
+
+	var newvalue string
 	for rownr, row := range sheet.Rows {
-		if rownr+1 >= exampleRow { continue }
+		if myParam.debug>0 { fmt.Println("examplerow:",rownr,row) }
+		if rownr >= maxRow && maxRow>0 { return }
 		//var vals []string
 		if row != nil {
 			for cellnr, cell := range row.Cells {
@@ -156,10 +178,10 @@ func parseExampleSheet(sheet *xlsx.Sheet, exampleRow int) {
 				if err != nil {
 					//vals = append(vals, err.Error())
 				}
-				if myParam.debug>0 { fmt.Println("  ex:",rownr,cellnr,value) }
-				//vals = append(vals, fmt.Sprintf("%q", str))
+				newvalue = Expand(value,re, variables)
+				if myParam.debug>0 { fmt.Println("  ex:",rownr,cellnr,value,newvalue) }
+				if newvalue != value { cell.Value=newvalue }
 			}
-			//outputf(strings.Join(vals, *delimiter) + "\n")
 		}
 	}
 }
@@ -756,4 +778,20 @@ func SetColsDefaultStyle(sheet *xlsx.Sheet, values []string) {
 }
 
 
+// replace variables syntax {XXX} using XXX value
+func Expand(instr string, regexprule *regexp.Regexp, variables  map[string]string )  string {
+	// input include 0-n {variables} and variables are of course not allways the same 
+	// loop all matches from input match by match and make unique replace all of those
+	result:=regexprule.ReplaceAllStringFunc(instr,
+		func(inputstr string) string {
+			// search if there is {variable} ..., find 1st match
+			match := regexprule.FindString(inputstr)
+			if  match == "" { return inputstr }
+			replace := variables[match]
+			if  replace == "" { return inputstr }
+			// replace it
+			return regexprule.ReplaceAllString(inputstr, replace)
+		})
+	return result
+}
 
