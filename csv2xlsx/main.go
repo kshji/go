@@ -216,6 +216,8 @@ func writeSheet(dataFileName string, sheet *xlsx.Sheet, exampleRow *xlsx.Row) (i
 		fmt.Println("config",myParam.config)
 		fmt.Println("font",myParam.font)
 		fmt.Println("fontsize",myParam.fontsize)
+		fmt.Println("formatnumber",myParam.formatfloat)
+		fmt.Println("formatdate",myParam.formatdate)
 		}
 
 	// set default font - currently xlsx v2 not work ...
@@ -343,6 +345,7 @@ func writeRowToXls(sheet *xlsx.Sheet, record []string, exampleRow *xlsx.Row, row
 	//var celltype *xlsx.CellType
 
 	var cellsLen int = 0
+	var formulastr string 
 	if exampleRow != nil {
 		cellsLen = len(exampleRow.Cells)
 	}
@@ -366,7 +369,10 @@ func writeRowToXls(sheet *xlsx.Sheet, record []string, exampleRow *xlsx.Row, row
 			writeCell(cell, exampleRow, colnr, colvalue, rownr, linenr )
 		} else {  // no example row, so try to quess coltype, setCell do it
 				if []rune(colvalue)[0] == '='  {   // input data include =formula syntax
-					cell.SetFormula(colvalue[1:])
+					formulastr = colvalue[1:]
+					//cell.SetFormula(colvalue[1:])
+					// maybe need to check formulas which include " chars ...
+					cell.SetFormula(formulastr)
 				} else {
 					setCell(sheet,cell, colvalue, colnr, colnames[colnr], coltypes[colnr], linenr)
 				}
@@ -379,7 +385,7 @@ func writeRowToXls(sheet *xlsx.Sheet, record []string, exampleRow *xlsx.Row, row
 }
 
 
-// set cell value, return somete int value which tell some type of number or string
+// set cell value, return some int value which tell some type of number or string
 func setCellValue(cell *xlsx.Cell, v string , mType string) int {
 	if mType == "" || mType == "int" { // try to set automatic Int using input string
 		intVal, err := strconv.Atoi(v)
@@ -397,6 +403,7 @@ func setCellValue(cell *xlsx.Cell, v string , mType string) int {
 		floatVal, err := strconv.ParseFloat(v, 64)
 		if err == nil { // It's float
 			cell.SetFloat(floatVal)
+			// set format
 			return 3
 		}
 	}
@@ -447,10 +454,13 @@ func setCell(sheet *xlsx.Sheet, cell *xlsx.Cell, value string,  colNr int, colna
 	cValue= cell.Value
 
 	if colPar == nil   { // use default type formats
+		switch myType { // automatic type of value
+			case 3:		cell.SetFormat(myParam.formatfloat)
+		}
 		switch coltype {
 			case "int":	cell.SetFormat("0")
-			case "date":	cell.SetFormat("d\\.m\\.yyyy;@")
-			case "float":	cell.SetFormat("#,##0.00")  // 2 decimals
+			case "date":	cell.SetFormat(myParam.formatdate) // cell.SetFormat("d\\.m\\.yyyy;@")
+			case "float":	cell.SetFormat(myParam.formatfloat) // cell.SetFormat("#,##0.00")  // 2 decimals
 		}
 		// default style
 		defFont = xlsx.NewFont(myParam.fontsize, myParam.font)
@@ -463,6 +473,7 @@ func setCell(sheet *xlsx.Sheet, cell *xlsx.Cell, value string,  colNr int, colna
 	// default has done if not used json config
 	if myParam.defstyle == nil { return }
 
+	// use config setup
 	*defStyle = *myParam.defstyle
 	if myParam.debug>0 {
 		fmt.Println(" Default Style")

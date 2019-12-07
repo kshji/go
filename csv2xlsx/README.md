@@ -12,6 +12,8 @@ This **csv2xlsx** is little more as traditional convert csv using some format to
 
   * [mentax csv2xlsx](https://github.com/mentax/csv2xlsx) I have took this source and updated it.
   * [DerLinkshaender csv2xlsx](https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks.
+  * [tealeg xlsx] (https://github.com/tealeg/xlsx) I use tealeg Xlsx library
+  * [Excelize] (https://github.com/360EntSecGroup-Skylar/excelize ) is interesting newer Xlsx library
 
 ## HELP
   Actual version always on  csv2xlsx -h or csv2xlsx help
@@ -74,6 +76,8 @@ Footer template:
 --writeheaderlines 0|1            write headerlines to the Excel, default 1, yes. If templates include headers, then set this 0.
 --startrow number                 Default is start csv reading from line 1. If not like import headerline, then set this ex. 2
 --config jsonconfigfile           config file, json format: default font, columns defination, used without templates
+--formatnumber "#,##0.00"	  format of number cols, default "#,##0.00"
+--formatdate ""d\\.m\\.yyyy;@"	  format of date cols, default "d\\.m\\.yyyy;@"
 --help, -h                        show help
 --debug 0|1, -d 0|1               debug level 0 | 1, default 0.
 --verbose 0|1                     default 0. Show rownumber when processing csv files.

@@ -103,6 +103,16 @@ func initCommandLine(args []string) error {
 			Value: 10,
 			Usage: "default 10.",
 		},
+		cli.StringFlag{
+			Name:  "formatdate",
+			Value: "d\\.m\\.yyyy;@",
+			Usage: "date format (default d\\.m\\.yyyy;@).",
+		},
+		cli.StringFlag{
+			Name:  "formatnumber",
+			Value: "#,##0.00",
+			Usage: "number format (default #,##0.00).",
+		},
 	}
 
 	//cli.Command{}
@@ -165,6 +175,8 @@ func checkAndReturnParams(c *cli.Context) (*params, error) {
 	p.verbose = c.Int("verbose")
 	p.fontsize = c.Int("fontsize")
 	p.font = c.String("font")
+	p.formatdate = c.String("formatdate")
+	p.formatfloat = c.String("formatnumber")
 
 	p.sheets = c.StringSlice("sheets")
 	configFile := c.String("config")
@@ -259,6 +271,8 @@ func checkAndReturnParams(c *cli.Context) (*params, error) {
 				if p.confjson.Verbose != "" { p.verbose,_ = strconv.Atoi(p.confjson.Verbose)  }
 				if p.confjson.Headerlines != "" { p.headerlines,_ = strconv.Atoi(p.confjson.Headerlines)  }
 				if p.confjson.Writeheaderlines != "" { p.writeheaderlines,_ = strconv.Atoi(p.confjson.Writeheaderlines)  }
+				if p.confjson.FormatDate != "" { p.formatdate = p.confjson.FormatDate  }
+				if p.confjson.FormatFloat != "" { p.formatfloat = p.confjson.FormatFloat  }
 
 
 				// JSON cols array
@@ -337,6 +351,8 @@ type params struct {
 	verbose int
 	fontsize int
 	font string
+	formatdate string
+	formatfloat string
 	json string
 	bjson []byte
 	confjson Config  // parsed json
@@ -353,6 +369,8 @@ var myParam  params
 type Config struct {
         Fontsize		string	`json:"fontsize"`
         Font			string  `json:"font"`
+        FormatDate		string  `json:"formatdate"`
+        FormatFloat		string  `json:"formatnumber"`
         Verbose			string  `json:"verbose"`
         Headerlines		string  `json:"headerlines"`
         Writeheaderlines	string  `json:"writeheaderlines"`
