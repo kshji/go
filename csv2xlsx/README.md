@@ -78,7 +78,7 @@ Footer template:
 #### CSV special
 If headerline columnname ending using [d] or [i] or [n], then column typing has used, not default.
 This need little development so that user can tell also default format. Currently format is builtin.
-##### [d] date
+##### [d] date format yyyy-mm-dd
 ##### [i] integer
 ##### [n] float format 0,00
 
