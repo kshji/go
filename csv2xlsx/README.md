@@ -36,7 +36,7 @@ csv2xlsx -d 0 -c ';' -t template5.xlsx --footer template5footer.xlsx --headerlin
 You can use also formulas in template or in csv. Csv formulas overwrite template formulas.
 Look examples formula col.
 
-Example include templates and screenshots from results.
+#### Example include templates and screenshots
 
 ```bash
 # use template template5.xlsx Sheet Sh2, and footer template template5footer.xlsx , row 5 is data example row
@@ -54,7 +54,7 @@ Footer template:
 <img src="https://raw.githubusercontent.com/kshji/go/master/csv2xlsx/example/template_footer_example.png?width=600&button=false" />
 
 #### VERSION:
-   0.2.2
+   2019-12-07
 
 #### OPTIONS:
 
