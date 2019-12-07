@@ -103,6 +103,7 @@ Example:
 
 ## TODO
  - option support for default format **date** and **number**
+ - full support for formulas. Currently formulas which include " chars are not so good, need to do something before csv parser.
 
 ## LICENSE
 
