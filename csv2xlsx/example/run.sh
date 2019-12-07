@@ -2,14 +2,16 @@
 
 
 # Basic
-../csv2xlsx --verbose 1 --font ubuntu --fontsize 20 -o data1.xlsx data1.csv
-../csv2xlsx --font ubuntu --fontsize 20 -o data2.xlsx data2.csv
-../csv2xlsx -o data1.xlsx data1.csv
+../csv2xlsx --verbose 1 --font ubuntu --fontsize 15 -o data1.xlsx data1.csv
+../csv2xlsx --font ubuntu --fontsize 16 -o data2.xlsx data2.csv
+../csv2xlsx -o data1b.xlsx data1.csv
+../csv2xlsx --formatdate "yyyy.mm.dd" --formatnumber "#,##0.0" -o data1c.xlsx data1.csv
 # Use columnames typing
 ../csv2xlsx -o data4.xlsx data4.csv
+../csv2xlsx --formatdate "yyyy.mm.dd" --formatnumber "#,##0.0" -o data4b.xlsx data4.csv
 
 # Basic config
-../csv2xlsx -d 0 --config data1.cfg --verbose 1 --font ubuntu --fontsize 15 -o data1b.xlsx data1.csv
+../csv2xlsx -d 0 --config data1.cfg --verbose 1 --font ubuntu --fontsize 15 -o data1d.xlsx data1.csv
 
 # Multisheet import
 echo "data2 multisheet, using template"
