@@ -82,10 +82,22 @@ This need little development so that user can tell also default format. Currentl
 ##### [i] integer
 ##### [n] float format 0,00
 
-#### XLSX template and csv data special, expand environment variables if exists in result sheet
+##### Formulas
+
+If csv cell start using symbol **=**, the cell will be formula, not value.
+
+Example:
+- =J:J+K:K  sum of column J and K in this line
+- =K1*J:J   Cell K1 multiply value of cell J in this line
+
+#### XLSX template and csv data special, expand environment variables 
+        Expand environment variables if exists in result sheet.
 
 	If cell include labeled string like {HOME} or {PATH} or any other environment variable name,
 	those will replace value of variable.
+
+## TODO
+ - option support for default format **date** and **number**
 
 ## LICENSE
 
