@@ -1,9 +1,3 @@
-/*
-https://golang.hotexamples.com/examples/github.com.tealeg.xlsx/Cell/SetStyle/golang-cell-setstyle-method-examples.html
-https://golang.hotexamples.com/examples/github.com.tealeg.xlsx/Cell/-/golang-cell-class-examples.html
-
-strings.Replace(col, "_", " ", -1)
-*/
 
 package main
 
