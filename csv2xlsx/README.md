@@ -38,7 +38,20 @@ Look examples formula col.
 
 Example include templates and screenshots from results.
 
+```bash
+# use template template5.xlsx Sheet Sh2, and footer template template5footer.xlsx , row 5 is data example row
+# input data.csv including headerline and not write it
+# result to the file result.xlsx
+csv2xlsx -c ';' -t template5.xlsx --footer template5footer.xlsx --headerlines 1 --writeheaderlines 0 -r 5 -s Sh2 -o result.xlsx  data.csv
+```
+Result:
+<img src="https://raw.githubusercontent.com/kshji/go/master/csv2xlsx/example/example.result.png?width=600&button=false" />
+Template:
 <img src="https://raw.githubusercontent.com/kshji/go/master/csv2xlsx/example/template_example.png?width=600&button=false" />
+Csv:
+<img src="https://raw.githubusercontent.com/kshji/go/master/csv2xlsx/example/data3.csv.png?width=600&button=false" />
+Footer template:
+<img src="https://raw.githubusercontent.com/kshji/go/master/csv2xlsx/example/template_footer_example.png?width=600&button=false" />
 
 #### VERSION:
    0.2.2
