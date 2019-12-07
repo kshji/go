@@ -1,7 +1,12 @@
 
-# csv 2 xlsx
-## csv2xlsx 
-
+# csv2xlsx again
+## csv to xlsx - csv to Excel
+This **csv2xlsx** is little more as traditional convert csv using some format to the Excel.
+ - you can use Excel template to tell format
+ - you can use json config file to tell output rule like font, format, ...
+ - csv can include formulas
+ - template can include indirect addressing formulas
+ - you can use environment variables in templates AND csv
 
 ## ORIGINAL VERSIONS
 
