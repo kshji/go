@@ -657,13 +657,13 @@ func writeCell(cell *xlsx.Cell, exampleRow *xlsx.Row, colNr int, colString strin
 	cell.SetStyle(cStyle)
 
 	celltype =  exampleRow.Cells[colNr].Type()
-	cellwidth :=  exampleRow.Cells[colNr].Type()
+	//cellwidth :=  exampleRow.Cells[colNr].Width
 
 	// if config file has set celltype, use it
 	// ....
 	if myParam.debug>0 && datarow==1   {
 		fmt.Println("After set, Type:",celltype)
-		fmt.Println("After set, Width:",cellwidth)
+		//fmt.Println("After set, Width:",cellwidth)
 		}
 
 }
