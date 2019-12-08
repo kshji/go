@@ -23,8 +23,7 @@ This **csv2xlsx** is little more as traditional convert csv using some format to
 
 ### Speed:
 
-   csv with 50k rows, 5 MB, with xlsx template - 5s
-
+   csv with 50k rows, 3.4 MB, with xlsx template with footer, every line include variable - 3.7 s
 
    (On Windows 10, Intel i7, WSL Ubuntu 18.04 )
 
