@@ -14,6 +14,7 @@ This **csv2xlsx** is little more as traditional convert csv using some format to
   * [DerLinkshaender csv2xlsx](https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks.
   * [tealeg xlsx] (https://github.com/tealeg/xlsx) I use tealeg Xlsx library
   * [Excelize] (https://github.com/360EntSecGroup-Skylar/excelize ) is interesting newer Xlsx library
+  * [Plandem] (https://github.com/plandem/xlsx) An other Xlsx library for Go
 
 ## HELP
   Actual version always on  csv2xlsx -h or csv2xlsx help
@@ -105,8 +106,7 @@ Example:
 	those will replace value of variable.
 
 ## TODO
- - option support for default format **date** and **number**
- - full support for formulas. Currently formulas which include " chars are not so good, need to do something before csv parser.
+ - date format not work as I like
 
 ## LICENSE
 
