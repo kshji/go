@@ -100,17 +100,17 @@ Example:
 - =K1*J:J   Cell K1 multiply value of cell J in this line
 
 #### XLSX template and csv data special, expand environment variables 
-        Expand environment variables if exists in result sheet.
+Expand environment variables if exists in result sheet.
 
-	If cell include labeled string like {HOME} or {PATH} or any other environment variable name,
-	those will replace value of variable.
+If cell include labeled string like {HOME} or {PATH} or any other environment variable name,
+those will replace value of variable.
 
 ##### Formatting date
-	You can use Go supported format or also ex. yyyy-mm-dd, d.m.yyyy, ...
-	[Go time format](https://golang.org/src/time/format.go)
+You can use Go supported format or also ex. yyyy-mm-dd, d.m.yyyy, ...
+[Go time format](https://golang.org/src/time/format.go)
 
 ##### Formatting number
-	You can used xlsx library number formats, same as Excel use.
+You can used xlsx library number formats, same as Excel use.
 
 ## TODO
  - 
