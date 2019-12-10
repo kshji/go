@@ -105,6 +105,13 @@ Example:
 	If cell include labeled string like {HOME} or {PATH} or any other environment variable name,
 	those will replace value of variable.
 
+##### Formatting date
+	You can use Go supported format or also ex. yyyy-mm-dd, d.m.yyyy, ...
+	[Go time format](https://golang.org/src/time/format.go)
+
+##### Formatting number
+	You can used xlsx library number formats, same as Excel use.
+
 ## TODO
  - 
 
