@@ -105,8 +105,8 @@ func initCommandLine(args []string) error {
 		},
 		cli.StringFlag{
 			Name:  "formatdate",
-			Value: "d\\.m\\.yyyy;@",
-			Usage: "date format (default d\\.m\\.yyyy;@).",
+			Value: "d.m.yyyy",
+			Usage: "date format (default d.m.yyyy).",
 		},
 		cli.StringFlag{
 			Name:  "formatnumber",

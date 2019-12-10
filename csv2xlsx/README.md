@@ -77,7 +77,7 @@ Footer template:
 --startrow number                 Default is start csv reading from line 1. If not like import headerline, then set this ex. 2
 --config jsonconfigfile           config file, json format: default font, columns defination, used without templates
 --formatnumber "#,##0.00"	  format of number cols, default "#,##0.00"
---formatdate ""d\\.m\\.yyyy;@"	  format of date cols, default "d\\.m\\.yyyy;@"
+--formatdate ""d.m.yyyy"	  format of date cols, default "d.m.yyyy"
 --help, -h                        show help
 --debug 0|1, -d 0|1               debug level 0 | 1, default 0.
 --verbose 0|1                     default 0. Show rownumber when processing csv files.
@@ -88,7 +88,7 @@ Footer template:
 If headerline columnname ending using [d] or [i] or [n], then column typing has used, not default.
 This need little development so that user can tell also default format. Currently format is builtin.
 ##### [d] date format yyyy-mm-dd
-##### [i] integer
+##### [i] integer 
 ##### [n] float format 0,00
 
 ##### Formulas
@@ -106,7 +106,7 @@ Example:
 	those will replace value of variable.
 
 ## TODO
- - date format not work as I like
+ - 
 
 ## LICENSE
 

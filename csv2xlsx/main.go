@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"regexp"
 	"strings"
+	"time"
 	"github.com/tealeg/xlsx"
 	"github.com/urfave/cli"
 	"github.com/davecgh/go-spew/spew"
@@ -448,18 +449,36 @@ func setCell(sheet *xlsx.Sheet, cell *xlsx.Cell, value string,  colNr int, colna
 	var err error
 	var defStyle = xlsx.NewStyle()
 	var defFont *xlsx.Font
+	var date time.Time
 
 	cStyle = cell.GetStyle()
 	cNumFmt= cell.NumFmt
 	cValue= cell.Value
 
 	if colPar == nil   { // use default type formats
+		if myParam.debug>0 { fmt.Println(" use default types:", myType, coltype ) }
 		switch myType { // automatic type of value
 			case 3:		cell.SetFormat(myParam.formatfloat)
 		}
 		switch coltype {
 			case "int":	cell.SetFormat("0")
-			case "date":	cell.SetFormat(myParam.formatdate) // cell.SetFormat("d\\.m\\.yyyy;@")
+			case "date":
+					//cell.SetFormat(myParam.formatdate) // cell.SetFormat("d\\.m\\.yyyy;@")
+					//cell.SetFormat(myParam.formatdate) // cell.SetFormat("d.m.yyyy")
+					date, err = time.Parse("2006-01-02",value)
+					if err == nil { // it's time
+						dateFormat := myParam.formatdate
+						dateFormat=ConvertTimeFormat(dateFormat)
+						value=date.Format(dateFormat)
+						setCellValue(cell, value,"")
+						//cell.SetFormat(myParam.formatdate)
+						if myParam.debug>0 { fmt.Println("Date:",date,value,dateFormat) }
+					} else {
+						setCellValue(cell, value,"")
+						cell.SetFormat(myParam.formatdate)
+						if myParam.debug>0 { fmt.Println("Ei Date:",value,myParam.formatdate) }
+						//cell.Value=FormatTime(date)
+					}
 			case "float":	cell.SetFormat(myParam.formatfloat) // cell.SetFormat("#,##0.00")  // 2 decimals
 		}
 		// default style
@@ -530,11 +549,25 @@ func setCell(sheet *xlsx.Sheet, cell *xlsx.Cell, value string,  colNr int, colna
 						cell.SetValue(value)
 					}
 				case "date":
-					cell.SetString(value)
-					cell.SetFormat("d\\.m\\.yyyy;@")
+					//cell.SetString(value)
+					//cell.SetFormat("d\\.m\\.yyyy;@")
+					//cell.SetFormat("d.m.yyyy")
+					date, err = time.Parse("2006-01-02",value)
+					if err == nil { // it's time
+						dateFormat := myParam.formatdate
+						if colPar.Format != "" { dateFormat=colPar.Format }
+						dateFormat=ConvertTimeFormat(dateFormat)
+						value=date.Format(dateFormat)
+						setCellValue(cell, value,"")
+						if myParam.debug>0 { fmt.Println("parDate:",date,value,dateFormat) }
+					} else {
+						setCellValue(cell, value,"")
+						if myParam.debug>0 { fmt.Println("parNoDate:",value,myParam.formatdate) }
+					}
+
 			}  // set  type
 
-			if colPar.Format != "" {
+			if colPar.Format != "" && coltype != "date" {
 				if myParam.debug>0 { fmt.Println("    Col-",colname," format current:",cell.GetNumberFormat," new format:",colPar.Format) }
 				cell.SetFormat(colPar.Format)
 			}
@@ -595,6 +628,10 @@ func writeCell(cell *xlsx.Cell, exampleRow *xlsx.Row, colNr int, colString strin
 
 	var formula string
 	var celltype xlsx.CellType
+	var cTime time.Time
+	var cellIsTime bool = false
+	var date time.Time
+	var err error
 
 	formula = ""
 	colStr := colString
@@ -604,9 +641,18 @@ func writeCell(cell *xlsx.Cell, exampleRow *xlsx.Row, colNr int, colString strin
 	celltype = excell.Type()
 	cStyle := excell.GetStyle()
 	cFormat := excell.GetNumberFormat()
+	if cellIsTime { celltype = xlsx.CellTypeDate }
+
 
 	if ( excell.IsTime() ) {
-		//cTime := excell.GetTime()
+		cTime, _ = excell.GetTime(true)  // date1904
+		if myParam.debug>0 { fmt.Println(" - Timetype",cTime) }
+		// template cell is time but value is little difficult, because Excel turn to the ISO format ...
+		// can't found format setup as it's in Excel ...
+		// SetDate(t time.Time)
+		cellIsTime=true
+		// testing how it works ...
+		celltype=xlsx.CellTypeDate
 		}
 
 	if []rune(colStr)[0] == '='  {   // input data include =formula syntax, use it, not examplerow
@@ -656,6 +702,26 @@ func writeCell(cell *xlsx.Cell, exampleRow *xlsx.Row, colNr int, colString strin
 				setCellValue(cell, colStr, "float")
 				cell.SetFloatWithFormat(floatVal, cFormat)
 			} else { // all other ...
+				if myParam.debug>0 && datarow==1 { fmt.Println(" -- other Format ",cFormat) }
+				setCellValue(cell, colStr,"")
+				cell.SetFormat(cFormat)
+			}
+		case xlsx.CellTypeDate:
+			if myParam.debug>0 && datarow==1  {  fmt.Println("CellTypeDate",colNr)   }
+			date, err = time.Parse("2006-01-02",colStr)
+			if myParam.debug>0 { fmt.Println(" -- time :",date) }
+			//colStr=date.Format("2006-01-02")
+			if err == nil { // it's time  - this is not so easy case ...
+				//colStr=date.Format(cFormat)
+				//dateFormat=ConvertTimeFormat(cFormat)
+				//cell.SetDate( date)
+				dateFormat := myParam.formatdate
+				dateFormat=ConvertTimeFormat(dateFormat)
+				colStr=date.Format(dateFormat)
+				if myParam.debug>0 && datarow==1 { fmt.Println(" -- date Format ",myParam.formatdate,dateFormat,cFormat) }
+				setCellValue(cell, colStr,"")
+				cell.SetFormat(cFormat)
+			} else {
 				if myParam.debug>0 && datarow==1 { fmt.Println(" -- other Format ",cFormat) }
 				setCellValue(cell, colStr,"")
 				cell.SetFormat(cFormat)
@@ -782,6 +848,19 @@ func SetColsDefaultStyle(sheet *xlsx.Sheet, values []string) {
 	}
 }
 
+// convert printf +timeformats to the go time formats
+func ConvertTimeFormat(src string) string {
+	result := src
+	result=strings.Replace(result, "mm", "01", -1)
+	result=strings.Replace(result, "m", "1", -1)
+	result=strings.Replace(result, "dd", "02", -1)
+	result=strings.Replace(result, "d", "2", -1)
+	result=strings.Replace(result, "yyyy", "2006", -1)
+	result=strings.Replace(result, "yy", "06", -1)
+	result=strings.Replace(result, "\\", "", -1)
+	//result=strings.Replace(result, ";@", "", -1)  // maybe need to split ; and use only 1st arg
+	return result
+}
 
 // replace variables syntax {XXX} using XXX value
 func Expand(instr string, regexprule *regexp.Regexp, variables  map[string]string )  string {
