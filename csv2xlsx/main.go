@@ -95,8 +95,8 @@ func writeAllSheets(xlFile *xlsx.File, dataFiles []string, sheetNames []string, 
 
 		sheet, err := getSheet(xlFile, sheetNames, i)
 		if err != nil {
-			// make copy from template sheet 0
-			sheet, err := getSheet(xlFile, sheetNames, i)
+			// make copy from template sheet 0 // waiting my freetime ....
+			//sheet, err := getSheet(xlFile, sheetNames, i)
 			return err
 		}
 		if xlFooter != nil {
