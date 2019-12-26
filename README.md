@@ -21,6 +21,11 @@ Also awk-command,ksh,... like to use CSV files.
   * [csv2xlsx](https://gitlab.com/DerLinkshaender/csv2xlsx) This converter has given some ideas. Thanks. 
   * [csv2xlsx](https://github.com/mentax/csv2xlsx)  I have took this source and updated it. 
 
+## My Go Xlsx commandline tools ##
+  * [csv2xlsx](https://github.com/kshji/csv2xlsx)  Convert csv to Excel (Xlsx)
+  * [xlsx2csv](https://github.com/kshji/xlsx2csv)  Convert Excel (Xlsx) to Csv files
+  * [xlsxsheetcopy](https://github.com/kshji/xlsxsheetcopy)  Simple method duplicate sheet
+  * [parse_env_and_expand](https://github.com/kshji/parse_env_and_expand)  Example how to use environment variables in templates
 
 ## My Repo ##
    * [Awk] (https://github.com/kshji/awk)
