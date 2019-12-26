@@ -43,7 +43,7 @@ xlsx2csv -f my.xlsx -s csvsheet -n Copied2
 
 ## LICENSE
 
-[License](https://github.com/kshji/go/xlsxsheetcopy/blob/master/LICENSE)
+[License](https://github.com/kshji/go/blob/master/xlsxsheetcopy/LICENSE)
 
 ## DOWNLOAD
 Download from [releases section on GitHub](https://github.com/kshji/go/tree/master/xlsxsheetcopy/build)
