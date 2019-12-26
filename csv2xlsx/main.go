@@ -18,7 +18,7 @@ import (
 )
 
 // SheetNamesTemplate define name's for new created sheets.
-var SheetNamesTemplate = "Sheet %d"
+//var SheetNamesTemplate = "Sheet %d"
 
 // ConfigCol struct
 type ConfigCol struct {
@@ -95,6 +95,8 @@ func writeAllSheets(xlFile *xlsx.File, dataFiles []string, sheetNames []string, 
 
 		sheet, err := getSheet(xlFile, sheetNames, i)
 		if err != nil {
+			// make copy from template sheet 0
+			sheet, err := getSheet(xlFile, sheetNames, i)
 			return err
 		}
 		if xlFooter != nil {
@@ -144,7 +146,8 @@ func getSheet(xlFile *xlsx.File, sheetNames []string, i int) (sheet *xlsx.Sheet,
 	if len(sheetNames) > i {
 		sheetName = sheetNames[i]
 	} else {
-		sheetName = fmt.Sprintf(SheetNamesTemplate, i+1)
+		//sheetName = fmt.Sprintf(SheetNamesTemplate, i+1)
+		sheetName = fmt.Sprintf(myParam.sheetdefaultname, i+1)
 	}
 
 	sheet, ok := xlFile.Sheet[sheetName]

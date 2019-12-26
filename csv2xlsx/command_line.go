@@ -28,6 +28,7 @@ func initCommandLine(args []string) error {
 		"Example: \n" +
 		"   csv2xlsx --template example/template.xlsx --footer example/templatefooter.xlsx --sheet Sheet_1 --sheet Sheet_2 --row 2 --output result.xlsx data.csv data2.csv \n" +
 		"   csv2xlsx.exe -t example\\template.xlsx -s Sheet_1 -s Sheet_2 -r 2 -o result.xlsx data.csv data2.csv \n"  +
+		"   csv2xlsx.exe -sheetdefaultname MySheet -o result.xlsx data.csv  \n"  +
 		"   csv2xlsx -d 0 -c ';' -t example/template5.xlsx --headerlines 1 --writeheaderlines 0 -r 5 -s Sh2 -o data3.xlsx  example/data3.csv"
 
 	app.Version = "0.2.2"
@@ -62,6 +63,11 @@ func initCommandLine(args []string) error {
 			Name:  "config",
 			Value: "",
 			Usage: "`path` to config file, json format",
+		},
+		cli.StringFlag{
+			Name:  "sheetdefaultname",
+			Value: "Sheet",
+			Usage: "Sheet default name, default is Sheet",
 		},
 		cli.StringFlag{
 			Name:  "colsep, c",
@@ -177,6 +183,7 @@ func checkAndReturnParams(c *cli.Context) (*params, error) {
 	p.font = c.String("font")
 	p.formatdate = c.String("formatdate")
 	p.formatfloat = c.String("formatnumber")
+	p.sheetdefaultname = c.String("sheetdefaultname") + " %d"  // Sheet % d 
 
 	p.sheets = c.StringSlice("sheets")
 	configFile := c.String("config")
@@ -355,6 +362,7 @@ type params struct {
 	formatfloat string
 	json string
 	bjson []byte
+	sheetdefaultname string
 	confjson Config  // parsed json
 	debug int
 	deffont *xlsx.Font
