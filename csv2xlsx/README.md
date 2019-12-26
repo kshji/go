@@ -61,12 +61,13 @@ Footer template:
 <img src="https://raw.githubusercontent.com/kshji/go/master/csv2xlsx/example/template_footer_example.png?width=600&button=false" />
 
 #### VERSION:
-   2019-12-07
+   2019-12-26
 
 #### OPTIONS:
 
 ```
 --sheets names, -s names          sheet names in the same order like csv files. If sheet with that name exists, data is inserted to this sheet. Usage: -s AA -s BB
+--sheetdefaultname		  Sheet default name, default is Sheet (+ %d )
 --template path, -t path          path to xlsx file with template output
 --row number, -r number           template row number to use for create rows format. When '0' - not used. This row will be removed from xlsx file. (default: 0)
 --footer footer_template_path     path to footer xlsx file - footer template 
