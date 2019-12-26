@@ -7,15 +7,15 @@
   Actual version always on  xlsxsheetcopy -h or xlsxsheetcopy help
 
 ### NAME:
-   xlsxsheetcopy - Copy sheet 
+   xlsxsheetcopy - Copy sheet or Duplicate
 
 
 ### Example:
 
 ```bash
-# read 1st sheet from my.xlsx , make copy to the sheet Copied
+# read 1st sheet from my.xlsx , duplicate sheet, copied sheet name is named Copied
 # save result to the same file
-# => xlsx can include lot of sheets, you only copy one sheet, it will be the last sheet
+# => xlsx can include lot of sheets, you only duplicate one sheet, it will be the last sheet
 xlsxsheetcopy -f my.xlsx -i 0 -n Copied 
 
 #  read sheet named csvsheet, make copy to the sheet Copied2
