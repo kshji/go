@@ -5,6 +5,8 @@
 ../csv2xlsx --verbose 1 --font ubuntu --fontsize 15 -o data1.xlsx data1.csv
 ../csv2xlsx --font ubuntu --fontsize 16 -o data2.xlsx data2.csv
 ../csv2xlsx -o data1b.xlsx data1.csv
+# name the sheets MySheet 1, MySheet 2, ...
+../csv2xlsx --sheetdefaultname "MySheet" -o data1d.xlsx data1.csv
 ../csv2xlsx --formatdate "yyyy.mm.dd" --formatnumber "#,##0.0" -o data1c.xlsx data1.csv
 # Use columnames typing
 ../csv2xlsx -o data4.xlsx data4.csv
