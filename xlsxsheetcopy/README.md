@@ -18,8 +18,10 @@
 # => xlsx can include lot of sheets, you only duplicate one sheet, it will be the last sheet
 xlsxsheetcopy -f my.xlsx -i 0 -n Copied 
 
-#  read sheet named csvsheet, make copy to the sheet Copied2
+#  read sheet named csvsheet, duplicate to the sheet Copied2
 xlsx2csv -f my.xlsx -s csvsheet -n Copied2
+#  read sheet named csvsheet, make copy to the sheets Copied2, Copied3 and Copied4
+xlsx2csv -f my.xlsx -s csvsheet -n Copied2,Copied3,Copied4
 
 ```
 
