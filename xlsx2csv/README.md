@@ -39,7 +39,7 @@ Look examples formula col.
 ```
 	-d CHAR		column delimiter char, default ;
 	-f file.xlsx	input xlsx file
-	-i number	sheet number to read, qst is 0 and it's default
+	-i number	sheet number to read, 1st is 0 and it's default
 	-s sheetname	use sheetname, not sheet number
 	-r startrow	default is to start from row 1
 
