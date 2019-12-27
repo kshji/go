@@ -20,14 +20,12 @@ var debug = flag.Int("debug", 0, "debug 0|1 ")
 
 func copySheet(excelFileName string, outFile string, sheetIndex int, sheetName string, sheetNameNew string) error {
 
-	//outFile := flag.Args()[0]
 	xlFile, error := xlsx.OpenFile(excelFileName)
-	//newfile := xlsx.NewFile()
 	if error != nil {
 		return error
 	}
 	sheetLen := len(xlFile.Sheets)
-	if *debug>0 { fmt.Println("SheetLen:",sheetLen) }
+	dbg("SheetLen:",sheetLen)
 
 	switch {
 	case sheetLen == 0:
@@ -47,22 +45,29 @@ func copySheet(excelFileName string, outFile string, sheetIndex int, sheetName s
 
 	// Sheet name to duplicate
 	sheet1Name := sheet.Name
-	if *debug>0 { fmt.Println("Duplicate SheetName:",sheet1Name ) }
+	dbg("Duplicate Sheet:",sheet1Name )
 	// duplicate org sheet
-
 	// name of new sheets is comma separeted list sheet names
 	for  _, sheetname := range strings.Split(sheetNameNew,",") {
-		if *debug>0 { fmt.Println("New Sheet:",sheetname ) }
+		dbg("New Sheet:",sheetname )
 		xlFile.AppendSheet(*sheet,sheetname)
 	}
-	//if *debug>0 { fmt.Println("Save:",outFile ) }
-	//error = newfile.Save(outFile)
 	error = xlFile.Save(excelFileName)
 	if error != nil {
                 return error
         }
 
 	return nil
+}
+
+func dbg(args ...interface{}) {
+
+	if *debug<0 { return }
+        fmt.Printf("Dbg:")
+        for _,arg := range args {
+                fmt.Printf("%v",arg)
+        }
+        fmt.Println()
 }
 
 func main() {
@@ -76,3 +81,4 @@ func main() {
 		fmt.Println(err)
 	}
 }
+
