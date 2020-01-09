@@ -66,7 +66,7 @@ func buildXls(c *cli.Context, p *params) (err error) {
 // 
 func writeAllSheets(xlFile *xlsx.File, dataFiles []string, sheetNames []string, exampleRowNumber int, xlFooter *xlsx.File) (err error) {
 
-	if myParam.debug>0 { fmt.Println("Set DefaultFont:",myParam.fontsize,myParam.font) }
+	dbg("Set DefaultFont:",myParam.fontsize,myParam.font)
 
 	var sheetFooter *xlsx.Sheet = nil
 	var xlRow *xlsx.Row
@@ -78,7 +78,7 @@ func writeAllSheets(xlFile *xlsx.File, dataFiles []string, sheetNames []string, 
 	// loop all environment variables and add to the map - hash table - maybe need to expand if template include {XX} 
 	for _, e := range os.Environ() {
                 pair := strings.SplitN(e, "=", 2)
-                if myParam.debug > 0 { fmt.Println(e," - ",pair[0],"=",pair[1]) }
+                dbg(e," - ",pair[0],"=",pair[1])
                 varstr = "{"+pair[0]+"}"  // add {  } = string comparing is easier, because template using {}
                 envvars[varstr] = pair[1]
 	}
@@ -882,3 +882,21 @@ func Expand(instr string, regexprule *regexp.Regexp, variables  map[string]strin
 	return result
 }
 
+func dbg(args ...interface{}) {
+
+	if myParam.debug<1 { return }
+        fmt.Printf("Debug ")
+        for _,arg := range args {
+                fmt.Printf("%v",arg)
+        }
+        fmt.Println()
+}
+
+
+func dbgDump(str interface{}, variable interface{}) {
+	if myParam.debug>0 { return }
+        fmt.Println("/*")
+        fmt.Println("  dbgDump ",str)
+        spew.Dump(variable)
+        fmt.Println("*/")
+}
