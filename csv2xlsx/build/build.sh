@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ver=2020-01-09
+ver=2020-01-15
 
 env GOOS=linux go build -o "csv2xlsx.linux.${ver}" ../
 env GOOS=darwin go build -o "csv2xlsx.darwin.${ver}" ../
