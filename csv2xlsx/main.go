@@ -349,7 +349,7 @@ func writeRowToXls(sheet *xlsx.Sheet, record []string, exampleRow *xlsx.Row, row
 	//var celltype *xlsx.CellType
 
 	var cellsLen int = 0
-	var formulastr string 
+	var formulastr string
 	if exampleRow != nil {
 		cellsLen = len(exampleRow.Cells)
 	}
@@ -372,7 +372,7 @@ func writeRowToXls(sheet *xlsx.Sheet, record []string, exampleRow *xlsx.Row, row
 			if myParam.debug>0 { fmt.Println("ex") }
 			writeCell(cell, exampleRow, colnr, colvalue, rownr, linenr )
 		} else {  // no example row, so try to quess coltype, setCell do it
-				if []rune(colvalue)[0] == '='  {   // input data include =formula syntax
+				if colvalue != "" && []rune(colvalue)[0] == '='  {   // input data include =formula syntax
 					formulastr = colvalue[1:]
 					//cell.SetFormula(colvalue[1:])
 					// maybe need to check formulas which include " chars ...
