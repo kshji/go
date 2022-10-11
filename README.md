@@ -31,7 +31,7 @@ Also awk-command,ksh,... like to use CSV files.
 ## My Repo ##
    * [Awk](https://github.com/kshji/awk)
    * [Ksh](https://github.com/kshji/ksh)
-   * [Go http server](https://github.com/kshji/viestihajonta/server)
+   * [Go http server](https://github.com/kshji/viestihajonta/tree/main/server)
 
 
 
