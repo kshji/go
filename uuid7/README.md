@@ -21,3 +21,10 @@ Return four values, delimiter |
 
 [More documentation](github.com/samborkent/uuidv7)
 
+## Using uuidv7 with Bash / Ksh /.... 
+Look uuidv7.sh
+```bash
+IFS="|" read uuidv7 short seq timestampUTC timestampLocal xstr < <(uuidv7)
+echo "uuidv7:$uuidv7"
+```
+
