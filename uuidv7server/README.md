@@ -16,7 +16,9 @@ uuidv7server -p 8888 -l 127.0.0.1
 
 Test it:
 ```bash
-wget -q -O - http://localhost:8888/
+wget -q -O - "http://localhost:8888/uuidv7"
+
+curl -X GET "http://localhost:8888/uuidv7"
 ```
 
 Return five values, delimiter |
