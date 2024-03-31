@@ -1,6 +1,7 @@
 # Go uuidv7 version
 
-[Go uuidv7 module](https://github.com/samborkent/uuid)
+* [Go uuidv7 module](https://github.com/samborkent/uuid)
+* [Same code, Go microservice](https://github.com/kshji/go/tree/master/uuidv7server)
 
 ```bash
 go mod init uuidv7
