@@ -12,7 +12,7 @@ uuidv7
 018e9508-4461-7149-b405-03f6a362ce41|03f6a362ce41|329|2024-03-31 15:02:10.785 +0000 UTC|2024-03-31 18:02:10.785 +0300 EEST
 ```
 
-Return four values, delimiter |
+Return five values, delimiter |
 * uuidv7
 * short 
 * sequence
