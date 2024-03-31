@@ -8,10 +8,6 @@ import (
 	"net/http"
 	"flag"
         "log"
-        _"encoding/json"
-        _"bytes"
-        _"html"
-        _"strings"
 )
 
 func main() {
