@@ -13,7 +13,7 @@ uuidv7
 ```
 
 Return four values, delimiter |
-* uuid7
+* uuidv7
 * short 
 * sequence
 * timestamp UTC
