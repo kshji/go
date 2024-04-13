@@ -20,7 +20,7 @@ Return five values, delimiter |
 * timestamp UTC
 * timestamp local
 
-[More documentation](github.com/samborkent/uuidv7)
+[More documentation](https://github.com/samborkent/uuidv7)
 
 ## Using uuidv7 with Bash / Ksh /.... 
 Look uuidv7.sh
