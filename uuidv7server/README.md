@@ -30,3 +30,6 @@ Return five values, delimiter |
 
 [More documentation](https://github.com/samborkent/uuid)
 
+## Using uuidv7 with Bash / Ksh / Javascript / Postgresql / ....
+
+[Read more](https://github.com/kshji/uuid/)
