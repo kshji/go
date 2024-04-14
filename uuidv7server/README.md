@@ -28,5 +28,5 @@ Return five values, delimiter |
  * timestamp UTC
  * timestamp local
 
-[More documentation](https://github.com/samborkent/uuidv7)
+[More documentation](https://github.com/samborkent/uuid)
 
