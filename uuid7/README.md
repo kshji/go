@@ -22,11 +22,10 @@ Return five values, delimiter |
 
 [More documentation](https://github.com/samborkent/uuid)
 
-## Using uuidv7 with Bash / Ksh /.... 
+## Using uuidv7 with Bash / Ksh / Javascript / Postgresql / .... 
 
-[Look uuidv7.sh](https://github.com/kshji/ksh/Sh)
-```bash
-IFS="|" read uuidv7 short seq timestampUTC timestampLocal xstr < <(uuidv7)
-echo "uuidv7:$uuidv7"
-```
+[Read more](https://github.com/kshji/uuid/)
+
+
+
 
